@@ -1,4 +1,5 @@
-console-env
+Console-Env
+-------
 This only works with the Puppet Enterprise Console
 
 This is the console-env module. It was written with the sole purpose of adding the ability to specify environments in the console using key/value pairs.

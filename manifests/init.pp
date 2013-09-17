@@ -1,40 +1,40 @@
-# == Class: env
+# == Class: console-env
 #
-# Full description of class env here.
+# This is the console-env module. It was written with the sole purpose of adding the ability to specify environments in the console using key/value pairs
 #
-# === Parameters
+# === Important
 #
-# Document parameters here.
+# This Module only works to add functionality to the Puppet Enterprise Console
 #
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
+# Once you have applied this class to you need to adjust /etc/puppetlabs/puppet/puppet.conf:
 #
-# === Variables
+# Change the line: external_nodes = /etc/puppetlabs/puppet-dashboard/external_node to external_nodes = /etc/puppetlabs/puppet-dashboard/external_node_env
+# Please remember to make this adjustment after the class has been applied (ie after the first puppet run)
 #
-# Here you should define a list of variables that this module would require.
+# You are going to need to restart pe-httpd before the ENC node can take affect
 #
-# [*sample_variable*]
-#   Explanation of how this variable affects the funtion of this class and if it
-#   has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#   External Node Classifier as a comma separated list of hostnames." (Note,
-#   global variables should not be used in preference to class parameters  as of
-#   Puppet 2.6.)
+# === Parameter in Console
 #
-# === Examples
+# Now using the node or group in the console you can set the environment key value pair
 #
-#  class { env:
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ]
-#  }
+# environment => YOURENVIRONMENT
 #
-# === Authors
 #
-# Author Name <author@domain.com>
+# === Author
+#
+# Jay Wallace <jay@puppetlabs.com>
 #
 # === Copyright
 #
-# Copyright 2013 Your name here, unless otherwise noted.
+# Copyright 2013 Jay Wallace
 #
+# === Notes.
+# Essentially this module just manages a file (the adjusted enc), if you run into any issues just revert back to the original ENC in puppet.conf and restart
+# pe-httpd
+#
+# Feel free to just use the adjust ENC script if you do not prefer to use the module. I promise I won't be offended.
+#
+# This is not the most elegant solution, but it works.
 class console-env {
 
   file { "/etc/puppetlabs/puppet-dashboard/external_node_wenv":
