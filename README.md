@@ -40,4 +40,4 @@ jay@puppetlabs.com
 Repo
 -------
 
-Please submit any pull request to [console-env repo](http://projects.example.com)
+Please submit any pull request to [console-env repo](https://github.com/revhazroot/console-env/)
