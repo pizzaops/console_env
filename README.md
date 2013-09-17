@@ -1,8 +1,8 @@
-Console-Env
+Console_Env
 -------
 This only works with the Puppet Enterprise Console
 
-This is the console-env module. It was written with the sole purpose of adding the ability to specify environments in the console using key/value pairs.
+This is the console_env module. It was written with the sole purpose of adding the ability to specify environments in the console using key/value pairs.
 
 This module is merely a temporary solution, to set environments without having to use an alternative ENC.
 
@@ -10,7 +10,7 @@ Usage
 -------
 Include this module on your Console node:
 
-`include console-env`
+`include console_env`
 
 Edit `/etc/puppetlabs/puppet/puppet.conf` and change the following line:
 

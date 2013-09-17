@@ -1,4 +1,4 @@
-# == Class: console-env
+# == Class: console_env
 #
 # This is the console-env module. It was written with the sole purpose of adding the ability to specify environments in the console using key/value pairs
 #
@@ -35,7 +35,7 @@
 # Feel free to just use the adjust ENC script if you do not prefer to use the module. I promise I won't be offended.
 #
 # This is not the most elegant solution, but it works.
-class console-env {
+class console_env {
 
   file { "/etc/puppetlabs/puppet-dashboard/external_node_wenv":
     owner => root,
