@@ -33,21 +33,23 @@
 # This is not the most elegant solution, but it works.
 class console_env {
 
-  file { "/etc/puppetlabs/puppet-dashboard/external_node_wenv":
-    owner => root,
-    group => root,
-    mode  => 755,
-    source => "puppet:///modules/console_env/external_node_wenv",
+  $console_env_script = '/etc/puppetlabs/puppet-dashboard/console_env.awk'
+  $match_line = 'curl -k -H "Accept: text/yaml" "..ENC_BASE_URL./..1."'
+  $curl_line  = 'curl -k -H "Accept: text/yaml" "${ENC_BASE_URL}/${1}"'
+
+  file_line { 'console_env-external_node':
+    ensure  => present,
+    path    => '/etc/puppetlabs/puppet-dashboard/external_node',
+    match   => "^${match_line}",
+    line    => "${curl_line} | ${console_env_script}",
+    require => File[$console_env_script],
   }
-  file { "/etc/puppetlabs/puppet-dashboard/external_node_orig":
-    owner  => root,
-    group  => root,
-    mode   => 755,
-    source => "puppet:///modules/console_env/external_node_orig",
-}
-  file {  "/etc/puppetlabs/puppet-dashboard/external_node":
-    ensure  => "link",
-    target  => "/etc/puppetlabs/puppet-dashboard/external_node_wenv",
-    require => File['/etc/puppetlabs/puppet-dashboard/external_node_wenv'],
-}
+
+  file { $console_env_script:
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
+    source => 'puppet:///modules/console_env/console_env.awk',
+  }
+
 }
