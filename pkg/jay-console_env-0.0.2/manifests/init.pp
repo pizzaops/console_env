@@ -45,9 +45,9 @@ class console_env {
     mode   => 755,
     source => "puppet:///modules/console_env/external_node_orig",
 }
-  file { "/etc/puppetlabs/puppet-dashboard/external_node"
-    ensure => "link",
-    target => "/etc/puppetlabs/puppet-dashboard/external_node_wenv",
+  file {  "/etc/puppetlabs/puppet-dashboard/external_node":
+    ensure  => "link",
+    target  => "/etc/puppetlabs/puppet-dashboard/external_node_wenv",
     require => File['/etc/puppetlabs/puppet-dashboard/external_node_wenv'],
 }
 }

@@ -3,6 +3,5 @@ set -e
 set -u
 
 ENC_BASE_URL="https://localhost:443/nodes"
-n=`curl -k -H "Accept: text/yaml" "${ENC_BASE_URL}/${1}" | grep "environment:"`
 curl -k -H "Accept: text/yaml" "${ENC_BASE_URL}/${1}"
-echo $n
+echo `curl -k -H "Accept: text/yaml" "${ENC_BASE_URL}/${1}" | grep "environment:"`

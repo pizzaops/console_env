@@ -17,8 +17,8 @@
     "Modulefile": "ef8551f29b58f7c603dd41bd49a0e961",
     "README.md": "a17d59faf5aa306fdbf00d8f105aaecc",
     "files/external_node_orig": "19c3aade2b291a647b35129ac3c3f9d0",
-    "files/external_node_wenv": "cb128590de4f3d6dc2ec99eb7a21ae3d",
-    "manifests/init.pp": "e9423a4ea50340514bce842b9f059c87",
+    "files/external_node_wenv": "11f6507fa8855e27181d2fc5d2770f0b",
+    "manifests/init.pp": "8866960694a2eb2ad01668e52351272e",
     "tests/init.pp": "6bb5b6bfba3f53c3c059ff6319cd79f6"
   }
 }
