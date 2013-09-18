@@ -1,0 +1,24 @@
+{
+  "name": "jay-console_env",
+  "version": "0.0.2",
+  "source": "git://github.com/revhazroot/console_env.git",
+  "author": "Jay Wallace",
+  "license": "Apache 2.0",
+  "summary": "Adds the functionality to use environment parameters from Puppet Enterprise Console",
+  "description": "Added functionality to existing Console ENC through slight modification",
+  "project_page": "https://github.com/revhazroot/console_env",
+  "dependencies": [
+
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "Modulefile": "ef8551f29b58f7c603dd41bd49a0e961",
+    "README.md": "a17d59faf5aa306fdbf00d8f105aaecc",
+    "files/external_node_orig": "19c3aade2b291a647b35129ac3c3f9d0",
+    "files/external_node_wenv": "cb128590de4f3d6dc2ec99eb7a21ae3d",
+    "manifests/init.pp": "e9423a4ea50340514bce842b9f059c87",
+    "tests/init.pp": "6bb5b6bfba3f53c3c059ff6319cd79f6"
+  }
+}
