@@ -6,8 +6,12 @@
 #
 # This Module only works to add functionality to the Puppet Enterprise Console
 #
-# This module changes external_node to a symbolic link and points the link to the modified enc version. The original
-# ENC is include, and has been renamed external_node_orig
+# Once you have applied this class to you need to adjust /etc/puppetlabs/puppet/puppet.conf:
+#
+# Change the line: external_nodes = /etc/puppetlabs/puppet-dashboard/external_node to external_nodes = /etc/puppetlabs/puppet-dashboard/external_node_env
+# Please remember to make this adjustment after the class has been applied (ie after the first puppet run)
+#
+# You are going to need to restart pe-httpd before the ENC node can take affect
 #
 # === Parameter in Console
 #
@@ -37,17 +41,6 @@ class console_env {
     owner => root,
     group => root,
     mode  => 755,
-    source => "puppet:///modules/console_env/external_node_wenv",
+    source => "puppet:///modules/console-env/external_node_wenv",
   }
-  file { "/etc/puppetlabs/puppet-dashboard/external_node_orig":
-    owner  => root,
-    group  => root,
-    mode   => 755,
-    source => "puppet:///modules/console_env/external_node_orig",
-}
-  file { "/etc/puppetlabs/puppet-dashboard/external_node"
-    ensure => "link",
-    target => "/etc/puppetlabs/puppet-dashboard/external_node_wenv",
-    require => File['/etc/puppetlabs/puppet-dashboard/external_node_wenv'],
-}
 }

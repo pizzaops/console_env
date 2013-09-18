@@ -12,8 +12,19 @@ Include this module on your Console node:
 
 `include console_env`
 
-After this module has been included, a symbolic link will be created out of the original ENC and the target will be set to `/etc/puppetlabs/puppet-dashboard/external_node_wenv`
-Your original ENC has been maintained, but renamed `/etc/puppetlabs/puppet-dashboard/external_node_orig`. To revert back, simply set the symbolic link to `/etc/puppetlabs/puppet-dashboard/external_node_orig`
+Edit `/etc/puppetlabs/puppet/puppet.conf` and change the following line:
+
+From:
+`external_nodes = /etc/puppetlabs/puppet-dashboard/external_node`
+
+To:
+
+`external_nodes = /etc/puppetlabs/puppet-dashboard/external_node_wenv`
+
+
+Restart PE-httpd:
+
+`service pe-httpd restart`
 
 Now you are able to specify the environment for individual nodes and groups in the console using the key value pair of:
 
