@@ -6,9 +6,16 @@
 #
 # This Module only works to add functionality to the Puppet Enterprise Console
 #
-# This module changes external_node to a symbolic link and points the link to the modified enc version. The original
-# ENC is include, and has been renamed external_node_orig
+# Under the hood the module is using an awk script extracting the value for the environment parameter if it exists, if the environment paramater is found it is
+# appended it to the environment stanza to the bottom of what is returned via the ENC scripts curl.
 #
+#
+# === The updated class
+# Now allows you to ensure the state of console_env
+# You can now use:
+# ensure => present,
+# And likewise
+# ensure => absent,
 # === Parameter in Console
 #
 # Now using the node or group in the console you can set the environment key value pair
@@ -25,8 +32,8 @@
 # Copyright 2013 Jay Wallace
 #
 # === Notes.
-# Essentially this module just manages a file (the adjusted enc), if you run into any issues just revert back to the original ENC in puppet.conf and restart
-# pe-httpd
+# Essentially this module uses a AWK script to look for the environment and append it to the bottom of what is returned via the ENC, if you run into any issues just ensure => absent to return 
+# the ENC to it original functionality.
 #
 # Feel free to just use the adjust ENC script if you do not prefer to use the module. I promise I won't be offended.
 #
