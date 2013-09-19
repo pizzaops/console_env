@@ -31,23 +31,34 @@
 # Feel free to just use the adjust ENC script if you do not prefer to use the module. I promise I won't be offended.
 #
 # This is not the most elegant solution, but it works.
-class console_env {
+class console_env (
+  $ensure = present,
+) {
 
-  file { "/etc/puppetlabs/puppet-dashboard/external_node_wenv":
-    owner => root,
-    group => root,
-    mode  => 755,
-    source => "puppet:///modules/console_env/external_node_wenv",
+  $console_env_script = '/etc/puppetlabs/puppet-dashboard/console_env.awk'
+  $match_line = 'curl -k -H "Accept: text/yaml" "..ENC_BASE_URL./..1."'
+  $curl_line  = 'curl -k -H "Accept: text/yaml" "${ENC_BASE_URL}/${1}"'
+
+  case $ensure {
+    default:   { fail("unsupported ensure value ${ensure}") }
+    'present': { $line = "${curl_line} | ${console_env_script}" }
+    'absent':  { $line = $curl_line }
   }
-  file { "/etc/puppetlabs/puppet-dashboard/external_node_orig":
-    owner  => root,
-    group  => root,
-    mode   => 755,
-    source => "puppet:///modules/console_env/external_node_orig",
-}
-  file {  "/etc/puppetlabs/puppet-dashboard/external_node":
-    ensure  => "link",
-    target  => "/etc/puppetlabs/puppet-dashboard/external_node_wenv",
-    require => File['/etc/puppetlabs/puppet-dashboard/external_node_wenv'],
-}
+
+  file_line { 'console_env-external_node':
+    ensure  => present,
+    path    => '/etc/puppetlabs/puppet-dashboard/external_node',
+    match   => "^${match_line}",
+    line    => $line,
+    require => File[$console_env_script],
+  }
+
+  file { $console_env_script:
+    ensure => $ensure,
+    owner  => 'root',
+    group  => 'root',
+    mode   => '0755',
+    source => 'puppet:///modules/console_env/console_env.awk',
+  }
+
 }
