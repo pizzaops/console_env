@@ -12,8 +12,10 @@ Include this module on your Console node:
 
 `include console_env`
 
-After this module has been included, a symbolic link will be created out of the original ENC and the target will be set to `/etc/puppetlabs/puppet-dashboard/external_node_wenv`
-Your original ENC has been maintained, but renamed `/etc/puppetlabs/puppet-dashboard/external_node_orig`. To revert back, simply set the symbolic link to `/etc/puppetlabs/puppet-dashboard/external_node_orig`
+By default the ensure value for the console_env class is set to present
+
+Under the hood the module is using an awk script extracting the value for the environment parameter if it exists, if the environment
+paramater is found it is appends it to the environment stanza to the bottom of what is returned via the ENC scripts curl.
 
 Now you are able to specify the environment for individual nodes and groups in the console using the key value pair of:
 
