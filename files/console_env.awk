@@ -7,12 +7,8 @@
 /^parameters:/ {
   while (getline) {
     print $0
-    if ($1 == "environment:") {
-      environment = $2
-    }
-    if ($0 ~ /^\w/) {
-      break
-    }
+    if ($0 ~ /^\w/) { break }
+    if ($1 == "environment:") { environment = $2 }
   }
 }
 
