@@ -15,7 +15,7 @@ Include this module on your Console node:
 By default the ensure value for the console_env class is set to present
 
 Under the hood the module is using an awk script extracting the value for the environment parameter if it exists, if the environment
-paramater is found it is appends it to the environment stanza to the bottom of what is returned via the ENC scripts curl.
+parameter is found it is appends it to the environment stanza at the bottom of what is returned via the ENC scripts curl.
 
 Now you are able to specify the environment for individual nodes and groups in the console using the key value pair of:
 
