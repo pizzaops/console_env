@@ -2,6 +2,8 @@
 set -e
 set -u
 
+TFILE="/tmp/console_env.$$.tmp"
+
 ENC_BASE_URL="https://localhost:443/nodes"
-curl -k -H "Accept: text/yaml" "${ENC_BASE_URL}/${1}"
-echo `curl -k -H "Accept: text/yaml" "${ENC_BASE_URL}/${1}" | grep "environment:"`
+curl -k -H "Accept: text/yaml" "${ENC_BASE_URL}/${1}" | tee $TFILE
+echo `grep environment: $TFILE` && `rm -r $TFILE`
