@@ -1,6 +1,6 @@
 Console_Env
 -------
-THIS WILL ONLY WORK WITH PE 3.0 OR GREATER
+THIS WILL ONLY WORK WITH PE 3.0 OR GREATER, AND ONLY VERSIONS PRIOR TO 3.2.0 (due to the ENC changes in 3.2.0)
 
 This only works with the Puppet Enterprise Console
 
